@@ -64,34 +64,8 @@
       from { transform: translateY(0) scale(1); opacity: 0.8; }
       to { transform: translateY(-800px) scale(0.5); opacity: 0; }
     }
-    /* Lapisan animasi langit */
-    canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 0;
-      background: linear-gradient(to bottom, #0a1830, #010106 80%);
-    }
 
-    /* Efek aurora lembut */
-    .aurora {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 50% 30%, rgba(80,150,255,0.15), transparent 70%);
-      animation: auroraMove 8s ease-in-out infinite alternate;
-      filter: blur(40px);
-      z-index: 1;
-      pointer-events: none;
-    }
-    @keyframes auroraMove {
-      from { transform: translateY(-20px); opacity: 0.6; }
-      to { transform: translateY(20px); opacity: 1; }
-    }
-  
-  /* Floating emoji */
+    /* Floating emoji */
   .float {
     position:absolute;
     font-size:24px;
@@ -107,34 +81,55 @@
   }
 
   .container {
-    position:relative; z-index:3; padding:60px 20px;
+    position:relative; z-index:3; padding:40px 15px;
   }
 
   h2 {
-    font-size:28px; margin-bottom:30px;
+    font-size:26px; margin-bottom:30px;
     color:#a6d8ff;
     text-shadow:0 0 25px rgba(120,170,255,0.9), 0 0 40px rgba(120,170,255,0.5);
   }
 
+  /* LAYOUT KIRI KANAN */
+  .content-wrapper {
+    display: flex;
+    flex-direction: row; /* Paksa posisi berdampingan */
+    align-items: flex-start; /* Supaya rata atas */
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: left; /* Teks rata kiri agar enak dibaca */
+  }
+
+  .video-section {
+    flex: 1; /* Mengambil 50% layar */
+    position: sticky; /* Bikin video tetap diam saat teks di-scroll */
+    top: 20px; 
+  }
+
   video {
-    width:85%; max-width:600px;
-    border-radius:20px; box-shadow:0 0 35px rgba(0,0,0,0.7);
-    margin-bottom:30px;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 0 35px rgba(0,0,0,0.7);
+  }
+
+  .text-section {
+    flex: 1; /* Mengambil 50% layar */
   }
 
   .text {
     background: rgba(255,255,255,0.07);
     color:#cce4ff;
-    padding:30px;
+    padding:25px;
     border-radius:20px;
-    width:85%;
-    max-width:700px;
-    margin:0 auto 40px auto;
-    line-height:1.8;
-    font-size:18px;
+    line-height:1.7;
+    font-size:16px;
     text-shadow:0 0 15px rgba(180,220,255,0.7);
     box-shadow:0 0 25px rgba(0,0,0,0.5);
   }
+
   .text p { margin-bottom:15px; opacity:0; animation:textAppear 1.5s forwards; }
   .text p:nth-child(1){animation-delay:0.5s;}
   .text p:nth-child(2){animation-delay:1s;}
@@ -144,15 +139,35 @@
   .text p:nth-child(6){animation-delay:3s;}
   .text p:nth-child(7){animation-delay:3.5s;}
 
+  .text a {
+    color: #a6d8ff;
+    text-decoration: underline;
+  }
+
   @keyframes textAppear { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
 
   .from {
-    font-size:16px; margin-top:40px; font-style:italic;
+    font-size:16px; margin-top:20px; font-style:italic;
     color:#a6d8ff; opacity:0;
+    text-align: right;
     animation:fadeInUp 3s ease 4s forwards;
     text-shadow:0 0 20px rgba(150,200,255,0.8);
   }
   @keyframes fadeInUp {from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);}}
+
+  /* Penyesuaian agar di HP tetap rapi dan tidak terlalu sempit */
+  @media (max-width: 768px) {
+    .content-wrapper {
+      gap: 10px;
+    }
+    .text {
+      padding: 15px;
+      font-size: 13px; /* Font dikecilkan sedikit di HP agar muat sebelah video */
+    }
+    h2 {
+      font-size: 20px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -163,23 +178,32 @@
 <div class="container">
   <h2>Selamat Ulang Tahun yang ke-22, menggoo 🎂</h2>
 
-  <video controls autoplay loop muted playsinline>
-    <source src="yuurei.mp4" type="video/mp4">
-    Browser kamu tidak mendukung video tag.
-  </video>
+  <div class="content-wrapper">
+    <!-- Bagian Kiri: Video -->
+    <div class="video-section">
+      <video controls autoplay loop muted playsinline>
+        <source src="yuurei.mp4" type="video/mp4">
+        Browser kamu tidak mendukung video tag.
+      </video>
+    </div>
 
-  <div class="text">
-    <p>Selamat ulang tahun yang ke 22 menggoo💙</p>
-    <p>Semangat terus ya jalanin hari, kerja, semuanyaaaaaa</p>
-    <p>Maaci yaaaahhhh untuk semua kebahagian, kehangatan, dan kenyamanan yang telah menggo berikan selamat iniii..... uda banyak sekali kenangan yang kita lalui, aku sangat bahagia dengan semua candaan, waktu, kenyamanan, kelembutan, kasih sayang, kesabaran.... semuanyaaa terimakasih telah menghabiskan waktu itu bersamaku. Terimakasi juga karna selalu tetap memeluk amarahku 💙 </p>
-    <p>Berbahagia selalu yaaaaaa entitas paling tampan didunia iniiiiii </p>
-    <p>Semoga harimu kedepannya selalu bahagia, dipenuhi senyum, tawa dan ada aku didalamnyaaa</p>
-    <p>Oiyaa full lagunya di youtube yahhhhh... semoga menggo sukaaaaa https://youtu.be/MQzBi6LxJHA </p>
+    <!-- Bagian Kanan: Teks -->
+    <div class="text-section">
+      <div class="text">
+        <p>Selamat ulang tahun yang ke 22 menggoo💙</p>
+        <p>Semangat terus ya jalanin hari, kerja, semuanyaaaaaa</p>
+        <p>Maaci yaaaahhhh untuk semua kebahagian, kehangatan, dan kenyamanan yang telah menggo berikan selamat iniii..... uda banyak sekali kenangan yang kita lalui, aku sangat bahagia dengan semua candaan, waktu, kenyamanan, kelembutan, kasih sayang, kesabaran.... semuanyaaa terimakasih telah menghabiskan waktu itu bersamaku. Terimakasi juga karna selalu tetap memeluk amarahku 💙 </p>
+        <p>Berbahagia selalu yaaaaaa entitas paling tampan didunia iniiiiii </p>
+        <p>Semoga harimu kedepannya selalu bahagia, dipenuhi senyum, tawa dan ada aku didalamnyaaa</p>
+        <p>Oiyaa full lagunya di youtube yahhhhh... semoga menggo sukaaaaa <br> <a href="https://youtu.be/MQzBi6LxJHA" target="_blank">https://youtu.be/MQzBi6LxJHA</a></p>
+        
+        <div class="from">
+          from pittyyyy
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="from">
-    from pittyyyy
-  </div>
 </div>
 
 <script>
