@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Bybyy 💙</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Poppins', sans-serif;
+    text-align:center;
+    background:#09111f;
+    color:#fff;
+    overflow-y:auto;
+    position:relative;
+    min-height:100vh;
+  }
+
+  /* Canvas bintang */
+  canvas { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; }
+
+  /* Aurora lembut */
+  .aurora {
+    position:fixed; top:0; left:0; width:100%; height:100%;
+    background: radial-gradient(circle at 50% 30%, rgba(80,150,255,0.15), transparent 70%);
+    filter:blur(50px);
+    animation: auroraMove 8s ease-in-out infinite alternate;
+    z-index:1; pointer-events:none;
+  }
+  @keyframes auroraMove {
+    from{transform:translateY(-20px); opacity:0.6;}
+    to{transform:translateY(20px); opacity:1;}
+  }
+ 
+  /* langit bergerak */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(120deg, #001233, #0a1a3f, #1a3a5f, #001233);
+      background-size: 300% 300%;
+      animation: skyMove 15s ease-in-out infinite;
+      z-index: 0;
+    }
+    @keyframes skyMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* partikel lembut */
+    .particle {
+      position: fixed;
+      width: 3px;
+      height: 3px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 50%;
+      filter: blur(1px);
+      animation: float 10s linear infinite;
+      z-index: 1;
+    }
+    @keyframes float {
+      from { transform: translateY(0) scale(1); opacity: 0.8; }
+      to { transform: translateY(-800px) scale(0.5); opacity: 0; }
+    }
+    /* Lapisan animasi langit */
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      background: linear-gradient(to bottom, #0a1830, #010106 80%);
+    }
+
+    /* Efek aurora lembut */
+    .aurora {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 30%, rgba(80,150,255,0.15), transparent 70%);
+      animation: auroraMove 8s ease-in-out infinite alternate;
+      filter: blur(40px);
+      z-index: 1;
+      pointer-events: none;
+    }
+    @keyframes auroraMove {
+      from { transform: translateY(-20px); opacity: 0.6; }
+      to { transform: translateY(20px); opacity: 1; }
+    }
+ 
+  /* Floating emoji */
+  .float {
+    position:absolute;
+    font-size:24px;
+    animation: floatUp 6s linear infinite;
+    opacity:0.8;
+    z-index:2;
+    user-select:none;
+  }
+  @keyframes floatUp {
+    0% { transform:translateY(0) scale(0.8); opacity:0; }
+    30% { opacity:1; }
+    100% { transform:translateY(-250px) scale(1.3); opacity:0; }
+  }
+
+  .container {
+    position:relative; z-index:3; padding:60px 20px;
+  }
+
+  h2 {
+    font-size:28px; margin-bottom:30px;
+    color:#a6d8ff;
+    text-shadow:0 0 25px rgba(120,170,255,0.9), 0 0 40px rgba(120,170,255,0.5);
+  }
+
+  video {
+    width:85%; max-width:600px;
+    border-radius:20px; box-shadow:0 0 35px rgba(0,0,0,0.7);
+    margin-bottom:30px;
+  }
+
+  .text {
+    background: rgba(255,255,255,0.07);
+    color:#cce4ff;
+    padding:30px;
+    border-radius:20px;
+    width:85%;
+    max-width:700px;
+    margin:0 auto 40px auto;
+    line-height:1.8;
+    font-size:18px;
+    text-shadow:0 0 15px rgba(180,220,255,0.7);
+    box-shadow:0 0 25px rgba(0,0,0,0.5);
+  }
+  .text p { margin-bottom:15px; opacity:0; animation:textAppear 1.5s forwards; }
+  .text p:nth-child(1){animation-delay:0.5s;}
+  .text p:nth-child(2){animation-delay:1s;}
+  .text p:nth-child(3){animation-delay:1.5s;}
+  .text p:nth-child(4){animation-delay:2s;}
+  .text p:nth-child(5){animation-delay:2.5s;}
+  .text p:nth-child(6){animation-delay:3s;}
+  .text p:nth-child(7){animation-delay:3.5s;}
+
+  @keyframes textAppear { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+
+  .from {
+    font-size:16px; margin-top:40px; font-style:italic;
+    color:#a6d8ff; opacity:0;
+    animation:fadeInUp 3s ease 4s forwards;
+    text-shadow:0 0 20px rgba(150,200,255,0.8);
+  }
+  @keyframes fadeInUp {from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+<div class="aurora"></div>
+
+<div class="container">
+  <h2>Selamat Ulang Tahun yang ke-20, Bybyyy 🎂</h2>
+
+  <video controls autoplay loop muted playsinline>
+    <source src="yuurei.mp4" type="video/mp4">
+    Browser kamu tidak mendukung video tag.
+  </video>
+
+  <div class="text">
+    <p>Selamat ulang tahun yang ke 20 bybyyy 💙</p>
+    <p>Semangat terus ya jalanin hari, kerja, semuanyaaaaaa</p>
+    <p>Maaci yaaaa untuk semua kebahagian, kehangatan, dan kenyamanan yang byby berikan..... uda banyak sekali kenangan yang kita lalui selama 2 tahun, aku sangat bahagia dengan semua candaan, waktu, kenyamanan, kelembutan, kasih sayang, kesabaran.... semuanyaaa terimakasih telah menghabiskan waktu itu bersamaku. Terimakasi karna telah saling mencoba untuk bahagia bersama.</p>
+    <p>Berbahagia selalu yaaaaaa entitas paling tampan didunia iniiiiii (my prince)</p>
+    <p>Maaf karna tida berumur panjang, tadinya aku berharap setelah meninggal nanti, kamu bisa menganggap aku hantu yang selalu ada bersama bybyy... jadi aku meninggalkan dunia saja, tida meninggalkan byby.</p>
+    <p>Tapi ternyata kita yang lebih dulu berakhir, bukan umurku.</p>
+    <p>Maaf atas semua luka yang aku tinggalkan, kenang aku dengan baik yaaa 🤍</p>
+  </div>
+
+  <div class="from">
+    from ghost 
+  </div>
+</div>
+
+<script>
+  // Bintang dan bintang jatuh
+    const canvas = document.getElementById("stars");
+    const ctx = canvas.getContext("2d");
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+
+    const stars = Array.from({ length: 200 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.2,
+      o: Math.random(),
+    }));
+
+    const shootingStars = [];
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(255,255,255,0.9)";
+      stars.forEach(s => {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+        s.y += 0.15;
+        if (s.y > canvas.height) s.y = 0;
+      });
+
+      // Bintang jatuh
+      if (Math.random() < 0.02) {
+        shootingStars.push({
+          x: Math.random() * canvas.width,
+          y: 0,
+          len: Math.random() * 100 + 50,
+          speed: Math.random() * 6 + 2
+        });
+      }
+
+      ctx.strokeStyle = "rgba(150,200,255,0.6)";
+      ctx.lineWidth = 2;
+      for (let i = 0; i < shootingStars.length; i++) {
+        const s = shootingStars[i];
+        ctx.beginPath();
+        ctx.moveTo(s.x, s.y);
+        ctx.lineTo(s.x - s.len, s.y + s.len / 2);
+        ctx.stroke();
+        s.x -= s.speed;
+        s.y += s.speed / 2;
+        if (s.x < -s.len || s.y > canvas.height + s.len) shootingStars.splice(i, 1);
+      }
+
+      requestAnimationFrame(draw);
+    }
+    draw();
+
+
+// Emoji floating 👻💙
+const icons=["👻","💙","👻","💙","💙","👻"];
+function spawnFloat(){
+  const el=document.createElement("div");
+  el.className="float";
+  el.innerText=icons[Math.floor(Math.random()*icons.length)];
+  el.style.left=Math.random()*90+"vw";
+  el.style.bottom="-80px";
+  el.style.fontSize=(Math.random()*20+25)+"px";
+  el.style.animationDuration=(Math.random()*6+6)+"s";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),10000);
+}
+setInterval(spawnFloat,1200);
+</script>
+
+</body>
+</html>
+
+
+
+
+
